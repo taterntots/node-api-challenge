@@ -64,4 +64,15 @@ router.post('/:id/actions', validateProjectId, validateAction, (req, res) => {
     })
 })
 
+//deletes a specified project from the database
+router.delete('/:id', validateProjectId, (req, res) => {
+  ProjectDb.remove(req.params.id)
+    .then(deleted => {
+      res.status(200).json({ success: `Your project was deleted`});
+    })
+    .catch(error => {
+      res.status(500).json({ errorMessage: 'There was an error deleting your project from the database' })
+    })
+})
+
 module.exports = router;

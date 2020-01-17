@@ -75,4 +75,19 @@ router.delete('/:id', validateProjectId, (req, res) => {
     })
 })
 
+//edits and updates the specified content of the object
+router.put('/:id', validateProjectId, validateProject, (req, res) => {
+  const id = req.params.id;
+  const changes = req.body;
+  const updatedProject = {...changes, id};
+
+  ProjectDb.update(id, changes)
+    .then(edits => {
+      res.status(200).json(updatedProject);
+    })
+    .catch(error => {
+      res.status(500).json({ errorMessage: 'There was an error editing your project information' })
+    })
+})
+
 module.exports = router;

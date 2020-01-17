@@ -13,7 +13,7 @@ function validateProjectId(req, res, next) {
       }
     })
     .catch(erorr => {
-      res.status(500).json({ errorMessage: 'Could not retrieve project information for the specified ID' });
+      res.status(500).json({ errorMessage: 'Could not validate project information for the specified ID' });
     })
 }
 

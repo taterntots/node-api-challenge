@@ -13,7 +13,7 @@ function validateActionId(req, res, next) {
       }
     })
     .catch(erorr => {
-      res.status(500).json({ errorMessage: 'Could not retrieve action information for the specified ID' });
+      res.status(500).json({ errorMessage: 'Could not validate action information for the specified ID' });
     })
 }
 

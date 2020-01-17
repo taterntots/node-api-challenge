@@ -25,4 +25,15 @@ router.get('/:id', validateProjectId, (req, res) => {
   })
 })
 
+//gets a list of actions associated with a specific project's id
+router.get('/:id/actions', validateProjectId, (req, res) => [
+  ProjectDb.getProjectActions(req.params.id)
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(error => {
+      res.status(500).json({ errorMessage: 'There was an error retrieving the list of actions' })
+    })
+])
+
 module.exports = router;
